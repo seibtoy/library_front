@@ -1,0 +1,55 @@
+@use "./../../styles/mixins" as *;
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  background-color: var(--white);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 50px 0 50px 0;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  &__logo img {
+    height: 100px;
+  }
+  &__lang {
+    display: flex;
+    gap: 10px;
+  }
+  &__lang-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: var(--icon-theme);
+    padding: 5px 10px;
+    min-width: auto;
+    box-shadow: none;
+    font-weight: bold;
+  }
+  &__socials {
+    display: flex;
+    gap: 10px;
+    color: var(--icon-theme);
+    font-size: 20px;
+  }
+}
+
+@include tablet {
+  .footer {
+    flex-direction: row;
+  }
+}
+@include desktop {
+  .footer {
+    flex-direction: row;
+  }
+}
