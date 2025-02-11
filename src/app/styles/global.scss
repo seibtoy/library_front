@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --font-grey: #565956;
+  --border-color: #ececec;
+  --primary-bg: #f1f2f1;
+  --white: #ffffff;
+  --icon-theme: #055065;
+}
+
 ul,
 ol {
   list-style: none;
@@ -15,8 +23,8 @@ a {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Lato", sans-serif;
   line-height: 1.6;
-  background-color: #f8f9fa;
+  background-color: var(--primary-bg);
   color: #333;
 }
