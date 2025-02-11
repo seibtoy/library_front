@@ -1,1 +1,65 @@
-<p>header works!</p>
+<header class="header">
+  <mat-toolbar color="primary" class="header__toolbar">
+    <div class="header__burger">
+      <button mat-icon-button class="header__burger-btn" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <nav class="header__nav" [class.open]="isMenuOpen">
+    <nav>
+      <ul class="header__menu">
+        <li class="header__menu-element"><a href="/">HOME</a></li>
+        <li class="header__menu-element"><a href="/">WISH LIST</a></li>
+        <li class="header__menu-element"><a href="/">MY ACCOUNT</a></li>
+        <li class="header__menu-element"><a href="/">SHOPPING CART</a></li>
+        <li class="header__menu-element"><a href="/">CHECKOUT</a></li>
+        <li class="header__menu-element"><a href="/">CREATE AN ACCOUNT</a></li>
+        <li class="header__menu-element"><a href="/">LOGIN</a></li>
+      </ul>
+    </nav>
+
+    <aside class="header__user-cart">
+      <div class="header__cart">
+        <mat-icon>shopping_cart</mat-icon>
+        <span><b>CART</b>: 0 ITEM(S)</span>
+      </div>
+      <div class="header__settings">
+        <div class="header__balance">&#36;0.00</div>
+        <div class="header__lang-block">
+          <select class="header__lang">
+            <option value="">En</option>
+            <option value="">Ua</option>
+          </select>
+        </div>
+        <div class="header__currency-block">
+          <select class="header__currency">
+            <option value="usd">&#36;</option>
+            <option value="eur">&#8364;</option>
+            <option value="uah">&#8372;</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+  </nav>
+
+  <hr />
+
+  <section class="header__logo-search">
+    <div class="header__logo-container">
+      <img src="assets/images/header_logo.png" alt="Library Logo" />
+    </div>
+    <div class="header__search-input">
+      <form (submit)="onSearch()">
+        <mat-form-field class="header__input" appearance="outline">
+          <mat-label>Поиск</mat-label>
+          <input matInput [(ngModel)]="searchValue" name="search" />
+          <button mat-icon-button matSuffix type="submit">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+  </section>
+</header>
