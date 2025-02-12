@@ -1,4 +1,20 @@
 @use "app/styles/global";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+body .footer {
+  margin-top: auto;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
