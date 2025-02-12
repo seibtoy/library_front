@@ -1,3 +1,5 @@
+@use "./../../styles/mixins" as *;
+
 .app-main {
   display: flex;
   justify-content: center;

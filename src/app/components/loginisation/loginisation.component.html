@@ -1,12 +1,12 @@
-<div class="registration">
+<div class="loginisation">
   <form
     [formGroup]="registrationForm"
     (ngSubmit)="onSubmit()"
-    class="registration__form"
+    class="loginisation__form"
   >
-    <div class="registration__field">
-      <h1>Register form</h1>
-      <div class="registration__input">
+    <div class="loginisation__field">
+      <h1>Login</h1>
+      <div class="loginisation__input">
         <mat-form-field *ngFor="let field of formFields" appearance="outline">
           <mat-label>{{ field.label }}</mat-label>
           <input
@@ -17,7 +17,7 @@
           />
           <mat-error
             *ngIf="registrationForm.get(field.controlName)?.invalid"
-            class="registration__error"
+            class="loginisation__error"
           >
             Invalid "{{ field.label }}"
           </mat-error>
@@ -34,13 +34,13 @@
         color="primary"
         type="submit"
         [disabled]="registrationForm.invalid"
-        class="registration__btn"
+        class="loginisation__btn"
       >
-        Register
+        Login
       </button>
     </div>
 
-    <div class="registration__img-container">
+    <div class="loginisation__img-container">
       <img src="assets/images/registration_img.png" alt="book-girl" />
     </div>
   </form>

@@ -1,6 +1,6 @@
 @use "./../../styles/mixins" as *;
 
-.registration {
+.loginisation {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +46,7 @@
 }
 
 @include tablet {
-  .registration {
+  .loginisation {
     &__form {
       display: flex;
       align-items: center;
@@ -71,7 +71,7 @@
   }
 }
 @include desktop {
-  .registration {
+  .loginisation {
     &__form {
       display: flex;
       align-items: center;

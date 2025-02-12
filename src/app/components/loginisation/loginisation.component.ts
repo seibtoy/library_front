@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-registration',
+  selector: 'app-loginisation',
   standalone: true,
   imports: [
     CommonModule,
@@ -22,29 +22,11 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './registration.component.html',
-  styleUrl: './registration.component.scss',
+  templateUrl: './loginisation.component.html',
+  styleUrl: './loginisation.component.scss',
 })
-export class RegistrationComponent {
+export class LoginisationComponent {
   formFields = [
-    {
-      controlName: 'name',
-      label: 'Name',
-      type: 'text',
-      placeholder: 'Your name',
-    },
-    {
-      controlName: 'surname',
-      label: 'Surname',
-      type: 'text',
-      placeholder: 'Your surname',
-    },
-    {
-      controlName: 'midname',
-      label: 'Middle name',
-      type: 'text',
-      placeholder: 'Your midname',
-    },
     {
       controlName: 'phone',
       label: 'Phone',
@@ -52,22 +34,10 @@ export class RegistrationComponent {
       placeholder: 'Your phone',
     },
     {
-      controlName: 'address',
-      label: 'Address',
-      type: 'text',
-      placeholder: 'Your address',
-    },
-    {
       controlName: 'password',
       label: 'Password',
       type: 'password',
       placeholder: 'Your password',
-    },
-    {
-      controlName: 'passwordConfirm',
-      label: 'Confirm password',
-      type: 'password',
-      placeholder: 'Your confirmed password',
     },
   ];
 
