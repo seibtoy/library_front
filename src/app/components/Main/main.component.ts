@@ -20,11 +20,11 @@ export class MainComponent {
     'Mystery',
     'Politics & Current Affairs',
     'Religion',
-    'Sale',
   ];
 
   books: Book[] = [];
   displayedBooks: Book[] = [];
+  selectedGenre: string | null = null;
   booksToShow = 24;
 
   constructor(private bookService: BookService) {}
@@ -33,6 +33,7 @@ export class MainComponent {
     this.bookService.getBooks().subscribe((data: Book[]) => {
       this.books = data;
       this.displayedBooks = this.books.slice(0, this.booksToShow);
+      this.genres = Array.from(new Set(this.books.map((book) => book.genre)));
     });
   }
 
@@ -43,6 +44,18 @@ export class MainComponent {
 
     if (this.displayedBooks.length >= this.books.length) {
       this.booksToShow = 0;
+    }
+  }
+
+  filterBooksByGenre(genre: string): void {
+    this.selectedGenre = genre;
+
+    if (genre === 'Sale') {
+      this.displayedBooks = this.books.slice(0, this.booksToShow);
+    } else {
+      this.displayedBooks = this.books
+        .filter((book) => book.genre === genre)
+        .slice(0, this.booksToShow);
     }
   }
 }
