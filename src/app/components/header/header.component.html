@@ -10,13 +10,19 @@
   <nav class="header__nav" [class.open]="isMenuOpen">
     <nav>
       <ul class="header__menu">
-        <li class="header__menu-element"><a href="/">HOME</a></li>
-        <li class="header__menu-element"><a href="/">WISH LIST</a></li>
-        <li class="header__menu-element"><a href="/">MY ACCOUNT</a></li>
-        <li class="header__menu-element"><a href="/">SHOPPING CART</a></li>
-        <li class="header__menu-element"><a href="/">CHECKOUT</a></li>
-        <li class="header__menu-element"><a href="/">CREATE AN ACCOUNT</a></li>
-        <li class="header__menu-element"><a href="/">LOGIN</a></li>
+        <li class="header__menu-element"><a routerLink="/">HOME</a></li>
+        <li class="header__menu-element"><a routerLink="/">WISH LIST</a></li>
+        <li class="header__menu-element"><a routerLink="/">MY ACCOUNT</a></li>
+        <li class="header__menu-element">
+          <a routerLink="/">SHOPPING CART</a>
+        </li>
+        <li class="header__menu-element"><a routerLink="/">CHECKOUT</a></li>
+        <li class="header__menu-element">
+          <a [routerLink]="['/login']">CREATE AN ACCOUNT</a>
+        </li>
+        <li class="header__menu-element">
+          <a [routerLink]="['/login']">CREATE AN ACCOUNT</a>
+        </li>
       </ul>
     </nav>
 

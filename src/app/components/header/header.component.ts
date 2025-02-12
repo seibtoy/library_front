@@ -8,6 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,11 +23,13 @@ import { MatSidenav } from '@angular/material/sidenav';
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
+    RouterModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  constructor(private router: Router) {}
   searchValue = '';
 
   onSearch() {
