@@ -1,5 +1,4 @@
 @use "./../../styles/mixins" as *;
-
 .footer {
   display: flex;
   justify-content: space-evenly;
@@ -7,10 +6,9 @@
   gap: 50px;
   align-items: center;
   background-color: var(--white);
-  position: absolute;
-  bottom: 0;
   width: 100%;
   padding: 50px 0 50px 0;
+  margin-top: auto;
 
   &__main {
     display: flex;
