@@ -1,7 +1,20 @@
 <main class="main">
   <section class="main__filter">
-    <button mat-button class="main__filter-btn" *ngFor="let genre of genres">
+    <button
+      mat-button
+      class="main__filter-btn"
+      *ngFor="let genre of genres"
+      (click)="filterBooksByGenre(genre)"
+      [ngClass]="{ active: genre === selectedGenre }"
+    >
       {{ genre }}
+    </button>
+    <button
+      mat-button
+      class="main__filter-btn"
+      (click)="filterBooksByGenre('Sale')"
+    >
+      Sale
     </button>
   </section>
   <section class="main__goods">
