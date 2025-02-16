@@ -4,13 +4,13 @@ import {
   FormGroup,
   Validators,
   ReactiveFormsModule,
-  AbstractControl,
-  ValidationErrors,
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { LoginResponse } from '../../models/loginResponse.model';
 
 @Component({
   selector: 'app-loginisation',
@@ -26,6 +26,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './loginisation.component.scss',
 })
 export class LoginisationComponent {
+  constructor(private http: HttpClient) {}
+
   formFields = [
     {
       controlName: 'phone',
@@ -41,52 +43,39 @@ export class LoginisationComponent {
     },
   ];
 
-  registrationForm = new FormGroup(
-    {
-      name: new FormControl<string>('', {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-      surname: new FormControl<string>('', {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-      midname: new FormControl<string>('', {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-      address: new FormControl<string>('', {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-      phone: new FormControl<string>('', {
-        nonNullable: true,
-        validators: [
-          Validators.required,
-          Validators.pattern(/^\+?[0-9]{10,15}$/),
-        ],
-      }),
-      password: new FormControl<string>('', {
-        nonNullable: true,
-        validators: [Validators.required, Validators.minLength(6)],
-      }),
-      passwordConfirm: new FormControl<string>('', {
-        nonNullable: true,
-        validators: [Validators.required, Validators.minLength(6)],
-      }),
-    },
-    { validators: this.passwordMatchValidator }
-  );
-
-  passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
-    const password = group.get('password')?.value;
-    const passwordConfirm = group.get('passwordConfirm')?.value;
-    return password === passwordConfirm ? null : { passwordsMismatch: true };
-  }
+  loginForm = new FormGroup({
+    phone: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        Validators.pattern(/^\+?[0-9]{10,15}$/),
+      ],
+    }),
+    password: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
+  });
 
   onSubmit() {
-    if (this.registrationForm.valid) {
-      console.log('Форма отправлена', this.registrationForm.value);
+    if (this.loginForm.valid) {
+      const loginData = this.loginForm.value;
+
+      this.http
+        .post<LoginResponse>('http://localhost:5000/login', loginData)
+        .subscribe({
+          next: (response) => {
+            console.log('Login successful', response);
+            sessionStorage.setItem('token', response.token);
+            alert('Login successfull');
+          },
+          error: (err) => {
+            console.error('Error', err);
+            alert('Login failed');
+          },
+        });
+
+      console.log('Form sent', this.loginForm.value);
     }
   }
 }

@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -26,6 +27,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
+  constructor(private http: HttpClient) {}
+
   formFields = [
     {
       controlName: 'name',
@@ -116,7 +119,27 @@ export class RegistrationComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      console.log('Форма отправлена', this.registrationForm.value);
+      const userData = this.registrationForm.value;
+
+      const { passwordConfirm, ...dataToSend } = userData;
+
+      this.http
+        .post('http://localhost:5000/register', dataToSend, {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        })
+        .subscribe({
+          next: (response) => {
+            console.log('Success registratin', response);
+            alert('Success registration');
+          },
+          error: (error) => {
+            console.error('Error: ', error);
+            alert('error registration');
+          },
+        });
+
+      console.log('Form sent ', this.registrationForm.value);
     }
   }
 }

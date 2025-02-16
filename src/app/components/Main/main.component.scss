@@ -3,12 +3,18 @@
 .main {
   display: flex;
   flex-direction: column;
-  max-width: 1500px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 
+  &__wrapper {
+    max-width: 1500px;
+    width: 100%;
+  }
   &__filter {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     padding: 30px 30px 70px 30px;
     flex-wrap: wrap;
@@ -121,5 +127,56 @@
     font-size: 20px;
     color: var(--icon-theme);
     margin-bottom: 50px;
+  }
+
+  &__additional-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__title-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5e3e3;
+    height: 70px;
+  }
+  &__title-info {
+    display: flex;
+    justify-content: center;
+  }
+  &__title {
+    text-align: start;
+  }
+
+  &__title-info div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  &__title-header div {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  &__title-header div,
+  &__title-info div {
+    max-width: 1500px;
+    width: 100%;
+  }
+  .title-info {
+    padding: 15px 0px;
+    border-bottom: 2px dotted lightgray;
+    width: 185px;
+    text-align: start;
+  }
+  .title-info:last-child {
+    border-bottom: none;
   }
 }
