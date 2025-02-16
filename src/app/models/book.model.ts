@@ -3,11 +3,13 @@ export interface Book {
   country: string;
   imageLink: string;
   language: string;
-  link: string;
   pages: number;
   title: string;
   year: number;
   genre: string;
-  price: number;
+  depositPrice: number;
+  rentalPrice: number;
+  quantity: number;
   currency: string;
+  availability: string;
 }

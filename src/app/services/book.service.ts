@@ -7,11 +7,11 @@ import { Book } from '../models/book.model';
   providedIn: 'root',
 })
 export class BookService {
-  private jsonUrl = 'assets/books.json';
+  private apiUrl = 'http://127.0.0.1:5000/books';
 
   constructor(private http: HttpClient) {}
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.jsonUrl);
+    return this.http.get<Book[]>(this.apiUrl);
   }
 }

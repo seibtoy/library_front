@@ -31,7 +31,9 @@
             <p class="title">{{ book.title }}</p>
           </div>
           <div class="main__goods-btn">
-            <button class="main__price-btn">${{ book.price }}</button>
+            <button class="main__price-btn">
+              ${{ book.rentalPrice }}<span class="subscript">/week</span>
+            </button>
             <button class="main__cart-btn">
               <i class="fa-solid fa-cart-shopping"></i>
             </button>

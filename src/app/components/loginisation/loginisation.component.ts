@@ -62,7 +62,7 @@ export class LoginisationComponent {
       const loginData = this.loginForm.value;
 
       this.http
-        .post<LoginResponse>('http://localhost:5000/login', loginData)
+        .post<LoginResponse>('http://127.0.0.1:5000//login', loginData)
         .subscribe({
           next: (response) => {
             console.log('Login successful', response);
