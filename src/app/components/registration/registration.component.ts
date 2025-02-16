@@ -124,7 +124,7 @@ export class RegistrationComponent {
       const { passwordConfirm, ...dataToSend } = userData;
 
       this.http
-        .post('http://localhost:5000/register', dataToSend, {
+        .post('http://127.0.0.1:5000//register', dataToSend, {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         })
