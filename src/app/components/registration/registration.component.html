@@ -7,7 +7,10 @@
     <div class="registration__field">
       <h1>Register form</h1>
       <div class="registration__input">
-        <mat-form-field *ngFor="let field of formFields" appearance="outline">
+        <mat-form-field
+          *ngFor="let field of formFields; let i = index"
+          appearance="outline"
+        >
           <mat-label>{{ field.label }}</mat-label>
           <input
             matInput
@@ -16,7 +19,10 @@
             [formControlName]="field.controlName"
           />
           <mat-error
-            *ngIf="registrationForm.get(field.controlName)?.invalid"
+            *ngIf="
+              registrationForm.get(field.controlName)?.invalid &&
+              i !== formFields.length - 1
+            "
             class="registration__error"
           >
             Invalid "{{ field.label }}"

@@ -1,6 +1,6 @@
 <div class="loginisation">
   <form
-    [formGroup]="registrationForm"
+    [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
     class="loginisation__form"
   >
@@ -16,24 +16,21 @@
             [formControlName]="field.controlName"
           />
           <mat-error
-            *ngIf="registrationForm.get(field.controlName)?.invalid"
+            *ngIf="loginForm.get(field.controlName)?.invalid"
             class="loginisation__error"
           >
             Invalid "{{ field.label }}"
           </mat-error>
         </mat-form-field>
       </div>
-      <mat-error
-        *ngIf="registrationForm.hasError('passwordsMismatch')"
-        class="error"
-      >
+      <mat-error *ngIf="loginForm.hasError('passwordsMismatch')" class="error">
         Passwords do not match!
       </mat-error>
       <button
         mat-raised-button
         color="primary"
         type="submit"
-        [disabled]="registrationForm.invalid"
+        [disabled]="loginForm.invalid"
         class="loginisation__btn"
       >
         Login
