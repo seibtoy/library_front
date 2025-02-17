@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -27,7 +28,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authservice: AuthService) {}
 
   formFields = [
     {
@@ -124,7 +125,7 @@ export class RegistrationComponent {
       const { passwordConfirm, ...dataToSend } = userData;
 
       this.http
-        .post('http://127.0.0.1:5000//register', dataToSend, {
+        .post('http://127.0.0.1:5000/register', dataToSend, {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         })

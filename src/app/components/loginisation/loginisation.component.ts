@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { LoginResponse } from '../../models/loginResponse.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-loginisation',
@@ -26,7 +27,7 @@ import { LoginResponse } from '../../models/loginResponse.model';
   styleUrl: './loginisation.component.scss',
 })
 export class LoginisationComponent {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   formFields = [
     {
@@ -62,11 +63,11 @@ export class LoginisationComponent {
       const loginData = this.loginForm.value;
 
       this.http
-        .post<LoginResponse>('http://127.0.0.1:5000//login', loginData)
+        .post<LoginResponse>('http://127.0.0.1:5000/login', loginData)
         .subscribe({
           next: (response) => {
             console.log('Login successful', response);
-            sessionStorage.setItem('token', response.token);
+            this.authService.login(response.token);
             alert('Login successfull');
           },
           error: (err) => {

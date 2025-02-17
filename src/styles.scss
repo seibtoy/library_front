@@ -18,3 +18,7 @@ app-root {
   flex-direction: column;
   min-height: 100%;
 }
+
+body.no-scroll {
+  overflow-y: hidden;
+}

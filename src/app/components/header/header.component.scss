@@ -106,6 +106,10 @@
   &__burger-btn {
     z-index: 200;
   }
+  .log-in,
+  .not-log-in {
+    display: none;
+  }
 }
 
 @include tablet {
