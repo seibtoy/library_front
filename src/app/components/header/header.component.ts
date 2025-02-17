@@ -7,9 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenav } from '@angular/material/sidenav';
-import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -24,12 +24,13 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatToolbarModule,
     RouterModule,
+    CommonModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService) {}
   searchValue = '';
 
   onSearch() {
@@ -41,5 +42,12 @@ export class HeaderComponent {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
     console.log('CLICK');
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+  logout(): void {
+    this.authService.logout();
   }
 }

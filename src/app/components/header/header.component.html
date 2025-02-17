@@ -17,11 +17,29 @@
           <a routerLink="/">SHOPPING CART</a>
         </li>
         <li class="header__menu-element"><a routerLink="/">CHECKOUT</a></li>
-        <li class="header__menu-element">
+        <li
+          [ngClass]="{
+            'log-in': isLoggedIn(),
+            'header__menu-element': !isLoggedIn()
+          }"
+        >
           <a [routerLink]="['/register']">CREATE AN ACCOUNT</a>
         </li>
-        <li class="header__menu-element">
+        <li
+          [ngClass]="{
+            'log-in': isLoggedIn(),
+            'header__menu-element': !isLoggedIn()
+          }"
+        >
           <a [routerLink]="['/login']">LOGIN</a>
+        </li>
+        <li
+          [ngClass]="{
+            'header__menu-element': isLoggedIn(),
+            'not-log-in': !isLoggedIn()
+          }"
+        >
+          <a (click)="logout()">LOG OUT</a>
         </li>
       </ul>
     </nav>

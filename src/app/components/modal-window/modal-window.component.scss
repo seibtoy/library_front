@@ -1,0 +1,46 @@
+@use "./../../styles/mixins" as *;
+
+.modal {
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  &__container {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 4px;
+    max-width: 500px;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}

@@ -12,4 +12,5 @@ export interface Book {
   quantity: number;
   currency: string;
   availability: string;
+  isLiked: boolean;
 }

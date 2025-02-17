@@ -22,15 +22,28 @@
       <h1>Featured Product</h1>
       <hr />
       <div class="main__goods-main">
-        <div *ngFor="let book of displayedBooks" class="main__goods-block">
+        <div
+          *ngFor="let book of displayedBooks; let i = index"
+          class="main__goods-block"
+        >
           <div class="main__info-container">
+            <button class="main__wish-btn">
+              <i
+                class="fa-heart"
+                [ngClass]="{
+                  'fa-solid fa-icon-red': book.isLiked,
+                  'fa-regular': !book.isLiked
+                }"
+                (click)="toggleHeart(i)"
+              ></i>
+            </button>
             <div class="main__img-container">
               <img [src]="book.imageLink" [alt]="book.author" />
             </div>
             <p class="author">{{ book.author }}</p>
             <p class="title">{{ book.title }}</p>
           </div>
-          <div class="main__goods-btn">
+          <div class="main__goods-btn" (click)="handleBookBtnClick()">
             <button class="main__price-btn">
               ${{ book.rentalPrice }}<span class="subscript">/week</span>
             </button>
@@ -52,8 +65,14 @@
       </button>
     </div>
   </div>
+  <app-modal-window
+    [modalTitle]="modalTitle"
+    [modalContent]="modalContent"
+    (closeModalEvent)="onCloseModal()"
+  >
+  </app-modal-window>
 
-  <section class="main__additional-info">
+  <!-- <section class="main__additional-info">
     <div class="main__title-header">
       <div>
         <span class="main__title">INFORMATION</span>
@@ -89,5 +108,5 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </main>

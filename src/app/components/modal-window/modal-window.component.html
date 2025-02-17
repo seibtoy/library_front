@@ -1,0 +1,20 @@
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true">
+      <header class="modal__header">
+        <h2 class="modal__title">{{ modalTitle }}</h2>
+        <button
+          class="modal__close"
+          aria-label="Close modal"
+          data-micromodal-close
+          (click)="closeModal()"
+        >
+          x
+        </button>
+      </header>
+      <div class="modal__content">
+        {{ modalContent }}
+      </div>
+    </div>
+  </div>
+</div>
