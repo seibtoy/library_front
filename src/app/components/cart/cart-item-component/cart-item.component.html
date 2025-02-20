@@ -1,0 +1,68 @@
+<div class="cart__content">
+  <div class="cart__book">
+    <div class="cart__book-img">
+      <img [src]="item.bookId.imageLink" alt="book" />
+    </div>
+    <div class="cart__book-info">
+      <p>
+        Author: <b>{{ item.bookId.author }}</b>
+      </p>
+      <p>
+        Title: <b>{{ item.bookId.title }}</b>
+      </p>
+      <p>
+        Genre: <b>{{ item.bookId.genre }}</b>
+      </p>
+      <p>
+        Pages: <b>{{ item.bookId.pages }}</b>
+      </p>
+      <p>
+        Deposit price:
+        <b>{{ item.bookId.depositPrice }} {{ item.bookId.currency }}</b>
+      </p>
+      <p>
+        Rental price:
+        <b
+          >{{ item.bookId.rentalPrice.toFixed(2) }}
+          {{ item.bookId.currency }}</b
+        >
+      </p>
+    </div>
+    <div class="cart__trash-icon" (click)="removeFromCart()">
+      <i class="fa-solid fa-trash"></i>
+    </div>
+    <div class="cart__price">
+      <div class="cart__counter">
+        <mat-form-field appearance="outline" class="cart__counter-inp">
+          <mat-label>Weeks</mat-label>
+          <div class="cart__counter-btn">
+            <button (click)="decrement()">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+            <input
+              matInput
+              [(ngModel)]="item.weeks"
+              type="text"
+              [readonly]="true"
+            />
+            <button (click)="increment()">
+              <i class="fa-regular fa-plus"></i>
+            </button>
+          </div>
+        </mat-form-field>
+      </div>
+
+      <div class="cart__total-price">
+        <span
+          >{{
+            (
+              item.bookId.depositPrice +
+              item.bookId.rentalPrice * item.weeks
+            ).toFixed(2)
+          }}
+          USD</span
+        >
+      </div>
+    </div>
+  </div>
+</div>

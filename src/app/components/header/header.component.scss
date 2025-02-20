@@ -150,10 +150,12 @@
       background-color: var(--icon-theme);
       transition: width 0.3s ease-in-out;
       transform: translateX(-50%);
+      pointer-events: none;
     }
 
     &__menu li:hover::after {
       width: 100%;
+      pointer-events: none;
     }
 
     &__user-cart {
@@ -203,6 +205,7 @@
     }
     &__menu li {
       position: relative;
+      z-index: 3;
     }
     &__menu li::after {
       content: "";
@@ -214,10 +217,14 @@
       background-color: var(--icon-theme);
       transition: width 0.3s ease-in-out;
       transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     &__menu li:hover::after {
       width: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
     &__user-cart {
