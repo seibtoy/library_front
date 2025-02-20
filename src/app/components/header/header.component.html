@@ -13,8 +13,8 @@
         <li class="header__menu-element"><a routerLink="/">HOME</a></li>
         <li class="header__menu-element"><a routerLink="/">WISH LIST</a></li>
         <li class="header__menu-element"><a routerLink="/">MY ACCOUNT</a></li>
-        <li class="header__menu-element">
-          <a routerLink="/">SHOPPING CART</a>
+        <li class="header__menu-element" (click)="toggleCart()">
+          <a>SHOPPING CART</a>
         </li>
         <li class="header__menu-element"><a routerLink="/">CHECKOUT</a></li>
         <li
@@ -86,4 +86,8 @@
       </form>
     </div>
   </section>
+  <app-cart
+    [isCartOpen]="isCartOpen"
+    (isCartOpenChange)="isCartOpen = $event"
+  ></app-cart>
 </header>

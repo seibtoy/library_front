@@ -5,6 +5,7 @@ import { BookService } from './../../services/book.service';
 import { Book } from '../../models/book.model';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-main',
@@ -28,10 +29,15 @@ export class MainComponent {
   displayedBooks: Book[] = [];
   selectedGenre: string | null = null;
   booksToShow = 24;
+  modalTitle = '';
+  modalContent = '';
+  isHeartSolid = false;
+  addedBooks: Set<string> = new Set();
 
   constructor(
     private bookService: BookService,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -67,14 +73,46 @@ export class MainComponent {
     }
   }
 
-  isHeartSolid = false;
+  saveCartToDatabase(book: any): void {
+    const token = sessionStorage.getItem('token');
+    const cartData = {
+      bookId: book._id,
+      weeks: 1,
+    };
+    console.log(token, cartData);
+
+    fetch(`http://localhost:5000/cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(cartData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Book added to cart:', data);
+        this.addedBooks.add(book._id);
+        this.cartService.loadCart();
+      })
+      .catch((error) => {
+        console.error('Error saving cart:', error);
+      });
+  }
+  isBookInCart(bookId: string): boolean {
+    return this.addedBooks.has(bookId);
+  }
 
   toggleHeart(index: number) {
     this.displayedBooks[index].isLiked = !this.displayedBooks[index].isLiked;
   }
-
-  modalTitle = '';
-  modalContent = '';
 
   @ViewChild(ModalWindowComponent) modal!: ModalWindowComponent;
 

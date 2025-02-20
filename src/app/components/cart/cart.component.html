@@ -1,0 +1,60 @@
+<div
+  class="cart micromodal-slide"
+  id="cart-1"
+  aria-hidden="true"
+  *ngIf="isCartOpen"
+>
+  <div class="cart__overlay" tabindex="-1" data-micromodal-close>
+    <div class="cart__container" role="dialog" aria-modal="true">
+      <header class="cart__header">
+        <h2 class="cart__title">Shopping cart</h2>
+        <button
+          class="cart__close"
+          aria-label="Close modal"
+          data-micromodal-close
+          (click)="handleCartClose()"
+        >
+          x
+        </button>
+      </header>
+      <main class="cart__main" *ngFor="let item of cartItems">
+        <app-item-cart [item]="item"></app-item-cart>
+      </main>
+      <footer>
+        <div class="cart__order-block" *ngIf="cartItems.length > 0">
+          <div class="cart__discount-block">
+            <div class="cart__discount-sweep" (click)="toggleDiscountBlock()">
+              <i class="fa-solid fa-angle-down"></i>
+              <span>Discount</span>
+            </div>
+            <div class="cart__discount-radio" *ngIf="isDiscountBlockVisible">
+              <mat-radio-button
+                value="discount-5"
+                (change)="onDiscountChange(5)"
+                >Student - 5%</mat-radio-button
+              >
+              <mat-radio-button
+                value="discount-10"
+                (change)="onDiscountChange(10)"
+                >Pensioner - 10%</mat-radio-button
+              >
+              <mat-radio-button
+                value="discount-15"
+                (change)="onDiscountChange(15)"
+                >Veteran - 15%</mat-radio-button
+              >
+            </div>
+          </div>
+          <div class="cart__order">
+            <span>{{ getTotal() }}$</span>
+            <button>Order</button>
+          </div>
+        </div>
+
+        <div class="cart__empty" *ngIf="cartItems.length === 0">
+          <p class="p">The shopping cart is empty</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

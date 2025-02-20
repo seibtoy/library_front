@@ -43,12 +43,18 @@
             <p class="author">{{ book.author }}</p>
             <p class="title">{{ book.title }}</p>
           </div>
-          <div class="main__goods-btn" (click)="handleBookBtnClick()">
+          <div class="main__goods-btn" (click)="saveCartToDatabase(book)">
             <button class="main__price-btn">
               ${{ book.rentalPrice }}<span class="subscript">/week</span>
             </button>
             <button class="main__cart-btn">
-              <i class="fa-solid fa-cart-shopping"></i>
+              <i
+                [ngClass]="
+                  isBookInCart(book._id)
+                    ? 'fa-solid fa-check'
+                    : 'fa-solid fa-cart-shopping'
+                "
+              ></i>
             </button>
           </div>
         </div>

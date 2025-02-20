@@ -1,0 +1,139 @@
+@use "./../../../styles/mixins.scss" as *;
+
+.cart {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 16px;
+  }
+  &__book {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  &__book-img img {
+    max-width: 110px;
+  }
+  &__counter-inp {
+    max-width: 150px;
+  }
+  &__counter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+  }
+  &__counter-btn button {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+  }
+  &__counter-btn input {
+    width: 20px;
+    height: 20px;
+  }
+  &__price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    gap: 30px;
+  }
+  &__total-price {
+    font-size: 25px;
+  }
+  .mat-mdc-form-field-subscript-wrapper,
+  .mat-mdc-form-field-bottom-align {
+    display: none;
+  }
+  &__trash-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--icon-theme);
+    font-size: 20px;
+  }
+  hr {
+    border: 1px solid lightgray;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  &__discount-sweep {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    color: #3e77aa;
+    cursor: pointer;
+  }
+  &__discount-radio {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  footer {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+  }
+  &__order {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+    background-color: lightblue;
+    border-radius: 10px;
+    border: 1px solid var(--icon-theme);
+  }
+  &__order span {
+    font-size: 25px;
+  }
+  &__order button {
+    width: 225px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: var(--icon-theme);
+    color: var(--white);
+  }
+}
+
+@include tablet {
+  .cart {
+    &__price {
+      display: flex;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+  }
+}
+@include desktop {
+  .cart {
+    &__price {
+      display: flex;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+  }
+}
