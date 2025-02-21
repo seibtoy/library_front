@@ -79,7 +79,6 @@ export class MainComponent {
       bookId: book._id,
       weeks: 1,
     };
-    console.log(token, cartData);
 
     fetch(`http://localhost:5000/cart`, {
       method: 'POST',
@@ -97,8 +96,7 @@ export class MainComponent {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log('Book added to cart:', data);
+      .then(() => {
         this.addedBooks.add(book._id);
         this.cartService.loadCart();
       })
@@ -125,14 +123,15 @@ export class MainComponent {
     }, 0);
   }
 
-  onCloseModal(): void {}
-
-  handleBookBtnClick(): void {
+  handleBookBtnClick(book: any): void {
     if (!this.authservice.isLoggedIn()) {
-      this.openModal('Oops!', 'Seems like you are not logged in');
+      this.openModal(
+        'Oops!',
+        'Seems like you are not logged in. Please create an account or log in!'
+      );
     } else {
       this.authservice.isLoggedIn();
-      alert('Hello');
+      this.saveCartToDatabase(book);
     }
   }
 }

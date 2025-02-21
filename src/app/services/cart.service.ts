@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -45,7 +46,6 @@ export class CartService {
       )
       .subscribe({
         next: (response) => {
-          console.log('Item removed from cart:', response);
           this.loadCart();
         },
         error: (error) => {
@@ -67,12 +67,18 @@ export class CartService {
         }
       )
       .subscribe({
-        next: (response) => {
-          console.log('Cart item updated:', response);
-        },
+        next: (response) => {},
         error: (error) => {
           console.error('Error updating cart item:', error);
         },
       });
+  }
+  getUserBorrowedBooks(): Observable<any> {
+    const token = sessionStorage.getItem('token');
+    return this.http.get<any>('http://localhost:5000/get-borrowed-books', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 }

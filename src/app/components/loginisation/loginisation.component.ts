@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { LoginResponse } from '../../models/loginResponse.model';
 import { AuthService } from '../../services/auth.service';
+import { ModalWindowComponent } from '../modal-window/modal-window.component';
 
 @Component({
   selector: 'app-loginisation',
@@ -22,12 +23,16 @@ import { AuthService } from '../../services/auth.service';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
+    ModalWindowComponent,
   ],
   templateUrl: './loginisation.component.html',
   styleUrl: './loginisation.component.scss',
 })
 export class LoginisationComponent {
   constructor(private http: HttpClient, private authService: AuthService) {}
+
+  modalTitle = '';
+  modalContent = '';
 
   formFields = [
     {
@@ -58,6 +63,17 @@ export class LoginisationComponent {
     }),
   });
 
+  @ViewChild(ModalWindowComponent) modal!: ModalWindowComponent;
+
+  openModal(title: string, content: string): void {
+    this.modalTitle = title;
+    this.modalContent = content;
+
+    setTimeout(() => {
+      this.modal.openModal();
+    }, 0);
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
@@ -66,17 +82,14 @@ export class LoginisationComponent {
         .post<LoginResponse>('http://127.0.0.1:5000/login', loginData)
         .subscribe({
           next: (response) => {
-            console.log('Login successful', response);
             this.authService.login(response.token);
-            alert('Login successfull');
+            alert('Login successful');
           },
           error: (err) => {
             console.error('Error', err);
             alert('Login failed');
           },
         });
-
-      console.log('Form sent', this.loginForm.value);
     }
   }
 }

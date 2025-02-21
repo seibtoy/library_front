@@ -12,7 +12,7 @@
           class="cart__close"
           aria-label="Close modal"
           data-micromodal-close
-          (click)="handleCartClose()"
+          (click)="toggleCart()"
         >
           x
         </button>
@@ -47,7 +47,7 @@
           </div>
           <div class="cart__order">
             <span>{{ getTotal() }}$</span>
-            <button>Order</button>
+            <button (click)="placeOrder()">Order</button>
           </div>
         </div>
 

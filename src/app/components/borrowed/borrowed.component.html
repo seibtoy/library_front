@@ -1,0 +1,45 @@
+<div class="borrowed">
+  <h1>Your Borrowed Books</h1>
+
+  <div class="borrowed__block">
+    <div *ngFor="let borrowedBook of borrowedBooks" class="borrowed__wrapper">
+      <div class="borrowed__item">
+        <div class="borrowed__item-img">
+          <img [src]="borrowedBook.bookId.imageLink" alt="" />
+        </div>
+        <div class="borrowed__item-info">
+          <h3>{{ borrowedBook.bookId.title }}</h3>
+          <p><strong>Author:</strong> {{ borrowedBook.bookId.author }}</p>
+          <p>
+            <strong>Rental Price:</strong>
+            {{ borrowedBook.bookId.rentalPrice.toFixed(2) }} USD
+          </p>
+          <p>
+            <strong>Deposit Price:</strong>
+            {{ borrowedBook.bookId.depositPrice.toFixed(2) }} USD
+          </p>
+          <p><strong>Weeks:</strong> {{ borrowedBook.weeks }}</p>
+          <p>
+            <strong>Rental Date:</strong> {{ borrowedBook.rentalDate | date }}
+          </p>
+          <p>
+            <strong>Return Date:</strong> {{ borrowedBook.returnDate | date }}
+          </p>
+          <p>
+            <strong>Total Price:</strong>
+            {{
+              (
+                borrowedBook.bookId.rentalPrice * borrowedBook.weeks +
+                borrowedBook.bookId.depositPrice
+              ).toFixed(2)
+            }}
+            USD
+          </p>
+        </div>
+      </div>
+      <div class="borrowed__btn">
+        <button>Stop rental period</button>
+      </div>
+    </div>
+  </div>
+</div>
