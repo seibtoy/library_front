@@ -43,7 +43,7 @@
             <p class="author">{{ book.author }}</p>
             <p class="title">{{ book.title }}</p>
           </div>
-          <div class="main__goods-btn" (click)="saveCartToDatabase(book)">
+          <div class="main__goods-btn" (click)="handleBookBtnClick(book)">
             <button class="main__price-btn">
               ${{ book.rentalPrice }}<span class="subscript">/week</span>
             </button>
@@ -71,48 +71,6 @@
       </button>
     </div>
   </div>
-  <app-modal-window
-    [modalTitle]="modalTitle"
-    [modalContent]="modalContent"
-    (closeModalEvent)="onCloseModal()"
-  >
+  <app-modal-window [modalTitle]="modalTitle" [modalContent]="modalContent">
   </app-modal-window>
-
-  <!-- <section class="main__additional-info">
-    <div class="main__title-header">
-      <div>
-        <span class="main__title">INFORMATION</span>
-        <span class="main__title">CUSTOM SERVICE</span>
-        <span class="main__title">EXTRAS</span>
-        <span class="main__title">MY ACCOUNT</span>
-      </div>
-    </div>
-    <div class="main__title-info">
-      <div>
-        <div class="main__title-block">
-          <div class="title-info">ABOUT</div>
-          <div class="title-info">DELIVERY</div>
-          <div class="title-info">PRIVACY POLICY</div>
-          <div class="title-info">TERMS & CONDITIONS</div>
-        </div>
-        <div class="main__title-block">
-          <div class="title-info">CONTACT US</div>
-          <div class="title-info">RETURNS</div>
-          <div class="title-info">SITE MAP</div>
-        </div>
-        <div class="main__title-block">
-          <div class="title-info">BRANDS</div>
-          <div class="title-info">GIFT VOUCHERS</div>
-          <div class="title-info">AFFILIATES</div>
-          <div class="title-info">SPECIALS</div>
-        </div>
-        <div class="main__title-block">
-          <div class="title-info">MY ACCOUNT</div>
-          <div class="title-info">ORDER HISTORY</div>
-          <div class="title-info">WISH LIST</div>
-          <div class="title-info">NEWSLETTER</div>
-        </div>
-      </div>
-    </div>
-  </section> -->
 </main>

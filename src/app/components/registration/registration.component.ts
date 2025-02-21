@@ -126,13 +126,11 @@ export class RegistrationComponent {
 
       this.http
         .post('http://127.0.0.1:5000/register', dataToSend, {
-
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         })
         .subscribe({
           next: (response) => {
-            console.log('Success registratin', response);
             alert('Success registration');
           },
           error: (error) => {
@@ -140,8 +138,6 @@ export class RegistrationComponent {
             alert('error registration');
           },
         });
-
-      console.log('Form sent ', this.registrationForm.value);
     }
   }
 }

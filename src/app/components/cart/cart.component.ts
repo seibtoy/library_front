@@ -78,7 +78,30 @@ export class CartComponent implements OnInit {
     document.body.classList.toggle('no-scroll');
   }
 
-  handleCartClose(): void {
-    this.toggleCart();
+  placeOrder(): void {
+    const token = sessionStorage.getItem('token');
+    const cartData = {
+      books: this.cartItems.map((item) => ({
+        bookId: item.bookId._id,
+        weeks: item.week,
+      })),
+      totalPrice: this.getTotal(),
+      weeks: this.cartItems[0]?.week || 0,
+    };
+
+    this.http
+      .post('http://localhost:5000/place-order', cartData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .subscribe({
+        next: (response) => {
+          this.cartItems = [];
+        },
+        error: (error) => {
+          console.error('Error placing order:', error);
+        },
+      });
   }
 }

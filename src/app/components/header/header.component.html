@@ -12,7 +12,15 @@
       <ul class="header__menu">
         <li class="header__menu-element"><a routerLink="/">HOME</a></li>
         <li class="header__menu-element"><a routerLink="/">WISH LIST</a></li>
-        <li class="header__menu-element"><a routerLink="/">MY ACCOUNT</a></li>
+        <li
+          class="header__menu-element"
+          [ngClass]="{
+            'log-in': !isLoggedIn(),
+            'header__menu-element': !isLoggedIn()
+          }"
+        >
+          <a [routerLink]="['/borrowed']">BORROWED BOOKS</a>
+        </li>
         <li class="header__menu-element" (click)="toggleCart()">
           <a>SHOPPING CART</a>
         </li>
@@ -90,4 +98,6 @@
     [isCartOpen]="isCartOpen"
     (isCartOpenChange)="isCartOpen = $event"
   ></app-cart>
+  <app-modal-window [modalTitle]="modalTitle" [modalContent]="modalContent">
+  </app-modal-window>
 </header>
