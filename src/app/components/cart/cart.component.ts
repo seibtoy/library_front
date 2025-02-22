@@ -38,6 +38,7 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   isDiscountBlockVisible: boolean = false;
   selectedDiscount: number = 0;
+  totalPrice: number = 0;
 
   constructor(private cartService: CartService, private http: HttpClient) {}
 
@@ -50,10 +51,32 @@ export class CartComponent implements OnInit {
 
   onDiscountChange(discount: number): void {
     this.selectedDiscount = discount;
-    sessionStorage.setItem(
-      'selectedDiscount',
-      this.selectedDiscount.toString()
-    );
+    this.updateDiscount(discount);
+  }
+
+  updateDiscount(discount: number): void {
+    const token = sessionStorage.getItem('token');
+    this.http
+      .post(
+        'http://localhost:5000/update-discount',
+        { discount },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .subscribe({
+        next: (response: any) => {
+          console.log('Response from backend:', response);
+          this.cartItems = response.cartItems;
+          this.totalPrice = response.totalPrice;
+          this.selectedDiscount = response.discount;
+        },
+        error: (error) => {
+          console.error('Error updating discount:', error);
+        },
+      });
   }
 
   getTotal(): string {
@@ -97,6 +120,7 @@ export class CartComponent implements OnInit {
       })
       .subscribe({
         next: (response) => {
+          console.log('Order placed:', response);
           this.cartItems = [];
         },
         error: (error) => {
