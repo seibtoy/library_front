@@ -57,10 +57,19 @@
 
 @include desktop {
   .borrowed {
-    &__block {
+    &__books-container {
       display: grid;
-      grid-template-columns: repeat(2, minmax(200px, 1fr));
-      align-items: center;
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    &__block {
+      display: flex;
+    }
+    &__wrapper {
+      margin-top: 50px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
     }
     &__item {
       display: flex;

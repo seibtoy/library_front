@@ -125,10 +125,7 @@ export class MainComponent {
 
   handleBookBtnClick(book: any): void {
     if (!this.authservice.isLoggedIn()) {
-      this.openModal(
-        'Oops!',
-        'Seems like you are not logged in. Please create an account or log in!'
-      );
+      alert('Please log in or create an account before using cart');
     } else {
       this.authservice.isLoggedIn();
       this.saveCartToDatabase(book);
