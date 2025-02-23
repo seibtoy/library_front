@@ -24,7 +24,22 @@
         <li class="header__menu-element" (click)="toggleCart()">
           <a>SHOPPING CART</a>
         </li>
-        <li class="header__menu-element"><a routerLink="/">CHECKOUT</a></li>
+        <li
+          [ngClass]="{
+            'header__menu-element': !isLoggedIn(),
+            'not-log-in': isLoggedIn()
+          }"
+        >
+          <a routerLink="/">CHECKOUT</a>
+        </li>
+        <li
+          [ngClass]="{
+            'header__menu-element': isLoggedIn(),
+            'not-log-in': !isLoggedIn()
+          }"
+        >
+          <a [routerLink]="['/financials']">FINANCIALS</a>
+        </li>
         <li
           [ngClass]="{
             'log-in': isLoggedIn(),
