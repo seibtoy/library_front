@@ -12,6 +12,8 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { CartComponent } from '../cart/cart.component';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
+import { Subscription } from 'rxjs';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -34,11 +36,31 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private cartService: CartService
+  ) {}
+
   searchValue = '';
   modalTitle = '';
   modalContent = '';
   isCartOpen: boolean = false;
+  cartItemCount: number = 0;
+
+  private cartSubscription: Subscription | undefined;
+
+  ngOnInit(): void {
+    this.cartSubscription = this.cartService.cartItems$.subscribe((items) => {
+      this.cartItemCount = items.length;
+    });
+    this.cartService.loadCart();
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
 
   onSearch(): void {
     console.log('Пошук:', this.searchValue);

@@ -7,7 +7,7 @@
         <div *ngFor="let book of borrowedBook.books" class="borrowed__wrapper">
           <div class="borrowed__item">
             <div class="borrowed__item-img">
-              <img [src]="book.bookId.imageLink" alt="" />
+              <img [src]="book.bookId.imageLink" alt="image-book" />
             </div>
             <div class="borrowed__item-info">
               <h3>{{ book.bookId.title }}</h3>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="borrowed__btn">
-            <button (click)="stopRental(borrowedBook._id, book.bookId._id)">
+            <button (click)="togglePenalty(book, borrowedBook)">
               Stop rental period
             </button>
           </div>
@@ -44,4 +44,22 @@
       </div>
     </div>
   </div>
+  <app-penalty
+    [isPenalty]="isPenalty"
+    (isPenaltyChange)="isPenalty = $event"
+    [selectedBook]="selectedBook"
+    [borrowedBook]="borrowedBook"
+    [userId]="borrowedBook?.userId"
+    (stopRentalEvent)="
+      stopRental(
+        $event.borrowedBookId,
+        $event.bookId,
+        $event.userId,
+        $event.depositPrice,
+        $event.clientPaid,
+        $event.refundAmount
+      )
+    "
+  >
+  </app-penalty>
 </div>

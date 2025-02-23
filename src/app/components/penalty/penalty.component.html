@@ -1,0 +1,92 @@
+<div *ngIf="isPenalty">
+  <div class="penalty__overlay" tabindex="-1" data-micromodal-close>
+    <div class="penalty__container" role="dialog" aria-modal="true">
+      <header class="penalty__header">
+        <h2 class="penalty__title">Checking the condition of a book</h2>
+        <button (click)="togglePenalty()">x</button>
+      </header>
+      <main class="penalty__main">
+        <div class="penalty__book-info">
+          <div class="penalty__item-img">
+            <img [src]="selectedBook.bookId.imageLink" alt="image-book" />
+          </div>
+          <div *ngIf="selectedBook">
+            <h3>{{ selectedBook.bookId.title }}</h3>
+            <p><strong>Author:</strong> {{ selectedBook.bookId.author }}</p>
+            <p>
+              <strong>Rental Price:</strong>
+              {{ selectedBook.bookId.rentalPrice.toFixed(2) }} USD
+            </p>
+            <p>
+              <strong>Deposit Price:</strong>
+              {{ selectedBook.bookId.depositPrice.toFixed(2) }} USD
+            </p>
+            <p><strong>Weeks:</strong> {{ selectedBook.weeks }}</p>
+            <p>
+              <strong>Rental Date:</strong> {{ selectedBook.rentalDate | date }}
+            </p>
+            <p>
+              <strong>Return Date:</strong> {{ selectedBook.returnDate | date }}
+            </p>
+            <p>
+              <strong>Total Price:</strong>
+              {{
+                (
+                  selectedBook.bookId.rentalPrice * selectedBook.weeks +
+                  selectedBook.bookId.depositPrice
+                ).toFixed(2)
+              }}
+              USD
+            </p>
+          </div>
+        </div>
+
+        <div class="penalty__penalties">
+          <div class="penalty__pen-checkbox">
+            <input
+              type="checkbox"
+              (change)="updateRefund('physicalDamage', $event)"
+            />
+            <label>Physical damage</label>
+          </div>
+
+          <div class="penalty__pen-checkbox">
+            <input
+              type="checkbox"
+              (change)="updateRefund('pollution', $event)"
+            />
+            <label>Pollution</label>
+          </div>
+
+          <div class="penalty__pen-checkbox">
+            <input
+              type="checkbox"
+              (change)="updateRefund('waterDamage', $event)"
+            />
+            <label>Water damage</label>
+          </div>
+
+          <div class="penalty__pen-checkbox">
+            <input
+              type="checkbox"
+              (change)="updateRefund('insectsAnimals', $event)"
+            />
+            <label>Damage from insects and animals</label>
+          </div>
+
+          <div class="penalty__pen-checkbox">
+            <input
+              type="checkbox"
+              (change)="updateRefund('mechanicalDefects', $event)"
+            />
+            <label>Mechanical defects</label>
+          </div>
+        </div>
+      </main>
+      <footer class="penalty__footer">
+        <p>You will be refunded ${{ refundAmount.toFixed(2) }}</p>
+        <button (click)="stopRental()">Refund the book</button>
+      </footer>
+    </div>
+  </div>
+</div>
