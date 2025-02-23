@@ -2,15 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { PenaltyComponent } from '../penalty/penalty.component';
 
 @Component({
   selector: 'app-borrowed',
-  imports: [CommonModule],
+  imports: [CommonModule, PenaltyComponent],
   templateUrl: './borrowed.component.html',
   styleUrl: './borrowed.component.scss',
 })
 export class BorrowedComponent implements OnInit {
   borrowedBooks: any[] = [];
+  isPenalty: boolean = false;
+  selectedBook: any;
+  borrowedBook: any;
 
   constructor(private cartService: CartService, private http: HttpClient) {}
 
@@ -25,14 +29,29 @@ export class BorrowedComponent implements OnInit {
     });
   }
 
-  stopRental(borrowedBookId: string, bookId: string): void {
+  stopRental(
+    borrowedBookId: string,
+    bookId: string,
+    userId: string,
+    depositPrice: number,
+    clientPaid: number,
+    refundAmount: number
+  ): void {
     const token = sessionStorage.getItem('token');
     this.http
       .post(
-        'http://localhost:5000/stop-rental',
-        { borrowedBookId, bookId },
+        'http://localhost:5000/rental-stop',
+        {
+          borrowedBookId,
+          bookId,
+          userId,
+          depositPrice,
+          clientPaid,
+          refundAmount,
+        },
         {
           headers: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         }
@@ -43,15 +62,27 @@ export class BorrowedComponent implements OnInit {
             (book) => book._id === borrowedBookId
           );
           if (index !== -1) {
-            // Обновляем только books внутри borrowedBook
             this.borrowedBooks[index].books = this.borrowedBooks[
               index
             ].books.filter((book: any) => book.bookId._id !== bookId);
           }
+          this.togglePenalty();
         },
         error: (error) => {
           console.error('Error stopping rental:', error);
         },
       });
+  }
+  togglePenalty(book?: any, borrowed?: any): void {
+    this.isPenalty = !this.isPenalty;
+    document.body.classList.toggle('no-scroll');
+
+    if (book && borrowed) {
+      this.selectedBook = book;
+      this.borrowedBook = borrowed;
+    } else {
+      this.selectedBook = null;
+      this.borrowedBook = null;
+    }
   }
 }
