@@ -3,36 +3,41 @@
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
     class="loginisation__form"
-  >
+    >
     <div class="loginisation__field">
       <h1>Login</h1>
       <div class="loginisation__input">
-        <mat-form-field *ngFor="let field of formFields" appearance="outline">
-          <mat-label>{{ field.label }}</mat-label>
-          <input
-            matInput
-            [type]="field.type"
-            [placeholder]="field.placeholder"
-            [formControlName]="field.controlName"
-          />
-          <mat-error
-            *ngIf="loginForm.get(field.controlName)?.invalid"
-            class="loginisation__error"
-          >
-            Invalid "{{ field.label }}"
-          </mat-error>
-        </mat-form-field>
+        @for (field of formFields; track field) {
+          <mat-form-field appearance="outline">
+            <mat-label>{{ field.label }}</mat-label>
+            <input
+              matInput
+              [type]="field.type"
+              [placeholder]="field.placeholder"
+              [formControlName]="field.controlName"
+              />
+            @if (loginForm.get(field.controlName)?.invalid) {
+              <mat-error
+                class="loginisation__error"
+                >
+                Invalid "{{ field.label }}"
+              </mat-error>
+            }
+          </mat-form-field>
+        }
       </div>
-      <mat-error *ngIf="loginForm.hasError('passwordsMismatch')" class="error">
-        Passwords do not match!
-      </mat-error>
+      @if (loginForm.hasError('passwordsMismatch')) {
+        <mat-error class="error">
+          Passwords do not match!
+        </mat-error>
+      }
       <button
         mat-raised-button
         color="primary"
         type="submit"
         [disabled]="loginForm.invalid"
         class="loginisation__btn"
-      >
+        >
         Login
       </button>
     </div>

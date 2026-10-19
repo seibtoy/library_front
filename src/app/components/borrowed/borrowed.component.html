@@ -2,47 +2,51 @@
   <h1>Your Borrowed Books</h1>
 
   <div class="borrowed__main">
-    <div *ngFor="let borrowedBook of borrowedBooks" class="borrowed__block">
-      <div class="borrowed__books-container">
-        <div *ngFor="let book of borrowedBook.books" class="borrowed__wrapper">
-          <div class="borrowed__item">
-            <div class="borrowed__item-img">
-              <img [src]="book.bookId.imageLink" alt="image-book" />
-            </div>
-            <div class="borrowed__item-info">
-              <h3>{{ book.bookId.title }}</h3>
-              <p><strong>Author:</strong> {{ book.bookId.author }}</p>
-              <p>
-                <strong>Rental Price:</strong>
-                {{ book.bookId.rentalPrice.toFixed(2) }} USD
-              </p>
-              <p>
-                <strong>Deposit Price:</strong>
-                {{ book.bookId.depositPrice.toFixed(2) }} USD
-              </p>
-              <p><strong>Weeks:</strong> {{ book.weeks }}</p>
-              <p><strong>Rental Date:</strong> {{ book.rentalDate | date }}</p>
-              <p><strong>Return Date:</strong> {{ book.returnDate | date }}</p>
-              <p>
-                <strong>Total Price:</strong>
-                {{
-                  (
+    @for (borrowedBook of borrowedBooks; track borrowedBook) {
+      <div class="borrowed__block">
+        <div class="borrowed__books-container">
+          @for (book of borrowedBook.books; track book) {
+            <div class="borrowed__wrapper">
+              <div class="borrowed__item">
+                <div class="borrowed__item-img">
+                  <img [src]="book.bookId.imageLink" alt="image-book" />
+                </div>
+                <div class="borrowed__item-info">
+                  <h3>{{ book.bookId.title }}</h3>
+                  <p><strong>Author:</strong> {{ book.bookId.author }}</p>
+                  <p>
+                    <strong>Rental Price:</strong>
+                    {{ book.bookId.rentalPrice.toFixed(2) }} USD
+                  </p>
+                  <p>
+                    <strong>Deposit Price:</strong>
+                    {{ book.bookId.depositPrice.toFixed(2) }} USD
+                  </p>
+                  <p><strong>Weeks:</strong> {{ book.weeks }}</p>
+                  <p><strong>Rental Date:</strong> {{ book.rentalDate | date }}</p>
+                  <p><strong>Return Date:</strong> {{ book.returnDate | date }}</p>
+                  <p>
+                    <strong>Total Price:</strong>
+                    {{
+                    (
                     book.bookId.rentalPrice * book.weeks +
                     book.bookId.depositPrice
-                  ).toFixed(2)
-                }}
-                USD
-              </p>
+                    ).toFixed(2)
+                    }}
+                    USD
+                  </p>
+                </div>
+              </div>
+              <div class="borrowed__btn">
+                <button (click)="togglePenalty(book, borrowedBook)">
+                  Stop rental period
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="borrowed__btn">
-            <button (click)="togglePenalty(book, borrowedBook)">
-              Stop rental period
-            </button>
-          </div>
+          }
         </div>
       </div>
-    </div>
+    }
   </div>
   <app-penalty
     [isPenalty]="isPenalty"
@@ -60,6 +64,6 @@
         $event.refundAmount
       )
     "
-  >
+    >
   </app-penalty>
 </div>

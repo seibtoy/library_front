@@ -3,45 +3,48 @@
     [formGroup]="registrationForm"
     (ngSubmit)="onSubmit()"
     class="registration__form"
-  >
+    >
     <div class="registration__field">
       <h1>Register form</h1>
       <div class="registration__input">
-        <mat-form-field
-          *ngFor="let field of formFields; let i = index"
-          appearance="outline"
-        >
-          <mat-label>{{ field.label }}</mat-label>
-          <input
-            matInput
-            [type]="field.type"
-            [placeholder]="field.placeholder"
-            [formControlName]="field.controlName"
-          />
-          <mat-error
-            *ngIf="
+        @for (field of formFields; track field; let i = $index) {
+          <mat-form-field
+            appearance="outline"
+            >
+            <mat-label>{{ field.label }}</mat-label>
+            <input
+              matInput
+              [type]="field.type"
+              [placeholder]="field.placeholder"
+              [formControlName]="field.controlName"
+              />
+            @if (
               registrationForm.get(field.controlName)?.invalid &&
               i !== formFields.length - 1
-            "
-            class="registration__error"
-          >
-            Invalid "{{ field.label }}"
-          </mat-error>
-        </mat-form-field>
+              ) {
+              <mat-error
+                class="registration__error"
+                >
+                Invalid "{{ field.label }}"
+              </mat-error>
+            }
+          </mat-form-field>
+        }
       </div>
-      <mat-error
-        *ngIf="registrationForm.hasError('passwordsMismatch')"
-        class="error"
-      >
-        Passwords do not match!
-      </mat-error>
+      @if (registrationForm.hasError('passwordsMismatch')) {
+        <mat-error
+          class="error"
+          >
+          Passwords do not match!
+        </mat-error>
+      }
       <button
         mat-raised-button
         color="primary"
         type="submit"
         [disabled]="registrationForm.invalid"
         class="registration__btn"
-      >
+        >
         Register
       </button>
     </div>

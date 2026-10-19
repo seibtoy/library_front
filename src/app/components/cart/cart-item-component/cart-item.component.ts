@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,13 +16,12 @@ import { CartService } from '../../../services/cart.service';
 @Component({
   selector: 'app-item-cart',
   imports: [
-    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatRadioModule,
-  ],
+    MatRadioModule
+],
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.scss',
   encapsulation: ViewEncapsulation.None,
