@@ -5,7 +5,7 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -45,9 +45,7 @@ export class PenaltyComponent implements OnChanges {
       const deposit = this.selectedBook.bookId?.depositPrice || 0;
       this.refundAmount = deposit;
 
-      Object.keys(this.penalties).forEach(
-        (key) => (this.penalties[key] = false)
-      );
+      Object.keys(this.penalties).forEach((key) => (this.penalties[key] = false));
     }
   }
 
@@ -58,11 +56,7 @@ export class PenaltyComponent implements OnChanges {
   }
 
   calculateRefund(): void {
-    if (
-      this.selectedBook &&
-      this.selectedBook.bookId &&
-      this.selectedBook.bookId.depositPrice
-    ) {
+    if (this.selectedBook && this.selectedBook.bookId && this.selectedBook.bookId.depositPrice) {
       this.refundAmount = this.selectedBook.bookId.depositPrice;
     } else {
       this.refundAmount = 0;
@@ -74,20 +68,14 @@ export class PenaltyComponent implements OnChanges {
     this.penalties[penaltyType] = event.target.checked;
 
     const totalDamage =
-      Object.values(this.penalties).filter((active) => active).length *
-      damagePercentage;
+      Object.values(this.penalties).filter((active) => active).length * damagePercentage;
 
-    this.refundAmount =
-      this.selectedBook.bookId.depositPrice * (1 - totalDamage);
+    this.refundAmount = this.selectedBook.bookId.depositPrice * (1 - totalDamage);
     this.refundAmount = parseFloat(this.refundAmount.toFixed(2));
   }
 
   stopRental(): void {
-    if (
-      this.selectedBook &&
-      this.selectedBook._id &&
-      this.selectedBook.bookId._id
-    ) {
+    if (this.selectedBook && this.selectedBook._id && this.selectedBook.bookId._id) {
       this.stopRentalEvent.emit({
         borrowedBookId: this.borrowedBook._id,
         bookId: this.selectedBook.bookId._id,

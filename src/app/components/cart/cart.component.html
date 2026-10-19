@@ -1,9 +1,5 @@
 @if (isCartOpen) {
-  <div
-    class="cart micromodal-slide"
-    id="cart-1"
-    aria-hidden="true"
-    >
+  <div class="cart micromodal-slide" id="cart-1" aria-hidden="true">
     <div class="cart__overlay" tabindex="-1" data-micromodal-close>
       <div class="cart__container" role="dialog" aria-modal="true">
         <header class="cart__header">
@@ -13,7 +9,7 @@
             aria-label="Close modal"
             data-micromodal-close
             (click)="toggleCart()"
-            >
+          >
             x
           </button>
         </header>
@@ -32,37 +28,31 @@
                 </div>
                 @if (isDiscountBlockVisible) {
                   <div class="cart__discount-radio">
-                    <mat-radio-button
-                      value="discount-5"
-                      (change)="onDiscountChange(5)"
+                    <mat-radio-button value="discount-5" (change)="onDiscountChange(5)"
                       >Student - 5%</mat-radio-button
-                      >
-                      <mat-radio-button
-                        value="discount-10"
-                        (change)="onDiscountChange(10)"
-                        >Pensioner - 10%</mat-radio-button
-                        >
-                        <mat-radio-button
-                          value="discount-15"
-                          (change)="onDiscountChange(15)"
-                          >Veteran - 15%</mat-radio-button
-                          >
-                        </div>
-                      }
-                    </div>
-                    <div class="cart__order">
-                      <span>{{ getTotal() }}$</span>
-                      <button (click)="placeOrder()">Order</button>
-                    </div>
+                    >
+                    <mat-radio-button value="discount-10" (change)="onDiscountChange(10)"
+                      >Pensioner - 10%</mat-radio-button
+                    >
+                    <mat-radio-button value="discount-15" (change)="onDiscountChange(15)"
+                      >Veteran - 15%</mat-radio-button
+                    >
                   </div>
                 }
-                @if (cartItems.length === 0) {
-                  <div class="cart__empty">
-                    <p class="p">The shopping cart is empty</p>
-                  </div>
-                }
-              </footer>
+              </div>
+              <div class="cart__order">
+                <span>{{ getTotal() }}$</span>
+                <button (click)="placeOrder()">Order</button>
+              </div>
             </div>
-          </div>
-        </div>
-      }
+          }
+          @if (cartItems.length === 0) {
+            <div class="cart__empty">
+              <p class="p">The shopping cart is empty</p>
+            </div>
+          }
+        </footer>
+      </div>
+    </div>
+  </div>
+}

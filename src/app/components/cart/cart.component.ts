@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,8 +25,8 @@ import { HttpClient } from '@angular/common/http';
     MatButtonModule,
     FormsModule,
     MatRadioModule,
-    CartItemComponent
-],
+    CartItemComponent,
+  ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -41,7 +41,10 @@ export class CartComponent implements OnInit {
   selectedDiscount: number = 0;
   totalPrice: number = 0;
 
-  constructor(private cartService: CartService, private http: HttpClient) {}
+  constructor(
+    private cartService: CartService,
+    private http: HttpClient,
+  ) {}
 
   ngOnInit(): void {
     this.cartService.cartItems$.subscribe((items) => {
@@ -65,7 +68,7 @@ export class CartComponent implements OnInit {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .subscribe({
         next: (response: any) => {
@@ -82,9 +85,7 @@ export class CartComponent implements OnInit {
 
   getTotal(): string {
     const total = this.cartItems.reduce((sum, item) => {
-      return (
-        sum + (item.bookId.depositPrice + item.bookId.rentalPrice * item.weeks)
-      );
+      return sum + (item.bookId.depositPrice + item.bookId.rentalPrice * item.weeks);
     }, 0);
 
     const discountedTotal = total - (total * this.selectedDiscount) / 100;

@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
   AfterViewInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import MicroModal from 'micromodal';
 

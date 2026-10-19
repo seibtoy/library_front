@@ -16,7 +16,7 @@
           class="header__menu-element"
           [ngClass]="{
             'log-in': !isLoggedIn(),
-            'header__menu-element': !isLoggedIn()
+            'header__menu-element': !isLoggedIn(),
           }"
         >
           <a [routerLink]="['/borrowed']">BORROWED BOOKS</a>
@@ -27,7 +27,7 @@
         <li
           [ngClass]="{
             'header__menu-element': !isLoggedIn(),
-            'not-log-in': isLoggedIn()
+            'not-log-in': isLoggedIn(),
           }"
         >
           <a routerLink="/">CHECKOUT</a>
@@ -35,7 +35,7 @@
         <li
           [ngClass]="{
             'header__menu-element': isLoggedIn(),
-            'not-log-in': !isLoggedIn()
+            'not-log-in': !isLoggedIn(),
           }"
         >
           <a [routerLink]="['/financials']">FINANCIALS</a>
@@ -43,7 +43,7 @@
         <li
           [ngClass]="{
             'log-in': isLoggedIn(),
-            'header__menu-element': !isLoggedIn()
+            'header__menu-element': !isLoggedIn(),
           }"
         >
           <a [routerLink]="['/register']">CREATE AN ACCOUNT</a>
@@ -51,7 +51,7 @@
         <li
           [ngClass]="{
             'log-in': isLoggedIn(),
-            'header__menu-element': !isLoggedIn()
+            'header__menu-element': !isLoggedIn(),
           }"
         >
           <a [routerLink]="['/login']">LOGIN</a>
@@ -59,7 +59,7 @@
         <li
           [ngClass]="{
             'header__menu-element': isLoggedIn(),
-            'not-log-in': !isLoggedIn()
+            'not-log-in': !isLoggedIn(),
           }"
         >
           <a (click)="logout()">LOG OUT</a>
@@ -109,10 +109,6 @@
       </form>
     </div>
   </section>
-  <app-cart
-    [isCartOpen]="isCartOpen"
-    (isCartOpenChange)="isCartOpen = $event"
-  ></app-cart>
-  <app-modal-window [modalTitle]="modalTitle" [modalContent]="modalContent">
-  </app-modal-window>
+  <app-cart [isCartOpen]="isCartOpen" (isCartOpenChange)="isCartOpen = $event"></app-cart>
+  <app-modal-window [modalTitle]="modalTitle" [modalContent]="modalContent"> </app-modal-window>
 </header>

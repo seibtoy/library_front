@@ -39,7 +39,7 @@ import { CartService } from '../../services/cart.service';
 export class HeaderComponent {
   constructor(
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {}
 
   searchValue = '';
@@ -95,7 +95,7 @@ export class HeaderComponent {
     if (!this.authService.isLoggedIn()) {
       this.openModal(
         'Oops!',
-        'Seems like you are not logged in. Please create an account or log in!'
+        'Seems like you are not logged in. Please create an account or log in!',
       );
     } else {
       this.isCartOpen = !this.isCartOpen;

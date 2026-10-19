@@ -7,34 +7,26 @@
           class="main__filter-btn"
           (click)="filterBooksByGenre(genre)"
           [ngClass]="{ active: genre === selectedGenre }"
-          >
+        >
           {{ genre }}
         </button>
       }
-      <button
-        mat-button
-        class="main__filter-btn"
-        (click)="filterBooksByGenre('Sale')"
-        >
-        Sale
-      </button>
+      <button mat-button class="main__filter-btn" (click)="filterBooksByGenre('Sale')">Sale</button>
     </section>
     <section class="main__goods">
       <h1>Featured Product</h1>
       <hr />
       <div class="main__goods-main">
         @for (book of displayedBooks; track book; let i = $index) {
-          <div
-            class="main__goods-block"
-            >
+          <div class="main__goods-block">
             <div class="main__info-container">
               <button class="main__wish-btn">
                 <i
                   class="fa-heart"
-                [ngClass]="{
-                  'fa-solid fa-icon-red': book.isLiked,
-                  'fa-regular': !book.isLiked
-                }"
+                  [ngClass]="{
+                    'fa-solid fa-icon-red': book.isLiked,
+                    'fa-regular': !book.isLiked,
+                  }"
                   (click)="toggleHeart(i)"
                 ></i>
               </button>
@@ -50,11 +42,9 @@
               </button>
               <button class="main__cart-btn">
                 <i
-                [ngClass]="
-                  isBookInCart(book._id)
-                    ? 'fa-solid fa-check'
-                    : 'fa-solid fa-cart-shopping'
-                "
+                  [ngClass]="
+                    isBookInCart(book._id) ? 'fa-solid fa-check' : 'fa-solid fa-cart-shopping'
+                  "
                 ></i>
               </button>
             </div>
@@ -64,16 +54,9 @@
     </section>
     <div class="main__show-more">
       @if (booksToShow > 0) {
-        <button
-          (click)="showMore()"
-          mat-button
-          class="main__show-btn"
-          >
-          Show more
-        </button>
+        <button (click)="showMore()" mat-button class="main__show-btn">Show more</button>
       }
     </div>
   </div>
-  <app-modal-window [modalTitle]="modalTitle" [modalContent]="modalContent">
-  </app-modal-window>
+  <app-modal-window [modalTitle]="modalTitle" [modalContent]="modalContent"> </app-modal-window>
 </main>

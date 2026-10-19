@@ -1,9 +1,5 @@
 <div class="loginisation">
-  <form
-    [formGroup]="loginForm"
-    (ngSubmit)="onSubmit()"
-    class="loginisation__form"
-    >
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="loginisation__form">
     <div class="loginisation__field">
       <h1>Login</h1>
       <div class="loginisation__input">
@@ -15,21 +11,15 @@
               [type]="field.type"
               [placeholder]="field.placeholder"
               [formControlName]="field.controlName"
-              />
+            />
             @if (loginForm.get(field.controlName)?.invalid) {
-              <mat-error
-                class="loginisation__error"
-                >
-                Invalid "{{ field.label }}"
-              </mat-error>
+              <mat-error class="loginisation__error"> Invalid "{{ field.label }}" </mat-error>
             }
           </mat-form-field>
         }
       </div>
       @if (loginForm.hasError('passwordsMismatch')) {
-        <mat-error class="error">
-          Passwords do not match!
-        </mat-error>
+        <mat-error class="error"> Passwords do not match! </mat-error>
       }
       <button
         mat-raised-button
@@ -37,16 +27,13 @@
         type="submit"
         [disabled]="loginForm.invalid"
         class="loginisation__btn"
-        >
+      >
         Login
       </button>
     </div>
-    <app-modal-window
-      [modalTitle]="modalTitle"
-      [modalContent]="modalContent"
-    ></app-modal-window>
+    <app-modal-window [modalTitle]="modalTitle" [modalContent]="modalContent" />
     <div class="loginisation__img-container">
-      <img src="assets/images/registration_img.png" alt="book-girl" />
+      <img ngSrc="assets/images/registration_img.png" alt="book-girl" />
     </div>
   </form>
 </div>

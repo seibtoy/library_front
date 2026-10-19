@@ -4,7 +4,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,13 +16,7 @@ import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-item-cart',
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    MatRadioModule
-],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, MatRadioModule],
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.scss',
   changeDetection: ChangeDetectionStrategy.Eager,

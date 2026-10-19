@@ -38,7 +38,7 @@ export class MainComponent {
   constructor(
     private bookService: BookService,
     private authservice: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {

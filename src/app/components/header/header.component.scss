@@ -1,4 +1,4 @@
-@use "./../../styles/mixins" as *;
+@use './../../styles/mixins' as *;
 
 .header {
   display: flex;
@@ -141,7 +141,7 @@
       position: relative;
     }
     &__menu li::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 50%;
       bottom: -5px;
@@ -208,7 +208,7 @@
       z-index: 3;
     }
     &__menu li::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 50%;
       bottom: -5px;

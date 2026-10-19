@@ -6,10 +6,16 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "lint": "ng lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "engines": {
+    "node": ">=24.15.0"
   },
   "private": true,
   "dependencies": {
+    "@angular/aria": "^22.2.3",
     "@angular/cdk": "^22.2.3",
     "@angular/common": "^22.2.3",
     "@angular/compiler": "^22.2.3",
@@ -17,29 +23,35 @@
     "@angular/forms": "^22.2.3",
     "@angular/material": "^22.2.3",
     "@angular/platform-browser": "^22.2.3",
-    "@angular/platform-browser-dynamic": "^22.2.3",
     "@angular/router": "^22.2.3",
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@ng-icons/core": "^36.1.0",
+    "@ng-icons/lucide": "^36.1.0",
+    "@ngrx/signals": "^22.0.1",
     "chart.js": "^4.4.8",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "micromodal": "^0.4.10",
-    "ng2-charts": "^8.0.0",
     "rxjs": "~7.8.0",
+    "tailwind-merge": "^3.7.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^22.2.3",
+    "@angular/build": "^22.2.3",
     "@angular/cli": "^22.2.3",
     "@angular/compiler-cli": "^22.2.3",
-    "@types/jasmine": "~5.1.0",
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/micromodal": "^0.3.5",
-    "istanbul-lib-instrument": "^6.0.3",
-    "jasmine-core": "~5.5.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~6.0.3"
+    "@types/node": "^24.19.2",
+    "angular-eslint": "22.6.0",
+    "eslint": "^10.12.0",
+    "postcss": "^8.5.31",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "8.71.0"
   }
 }

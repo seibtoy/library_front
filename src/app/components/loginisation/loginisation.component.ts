@@ -1,10 +1,5 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,14 +17,17 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    ModalWindowComponent
-],
+    ModalWindowComponent,
+  ],
   templateUrl: './loginisation.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './loginisation.component.scss',
 })
 export class LoginisationComponent {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+  ) {}
 
   modalTitle = '';
   modalContent = '';
@@ -52,10 +50,7 @@ export class LoginisationComponent {
   loginForm = new FormGroup({
     phone: new FormControl<string>('', {
       nonNullable: true,
-      validators: [
-        Validators.required,
-        Validators.pattern(/^\+?[0-9]{10,15}$/),
-      ],
+      validators: [Validators.required, Validators.pattern(/^\+?[0-9]{10,15}$/)],
     }),
     password: new FormControl<string>('', {
       nonNullable: true,
@@ -78,18 +73,16 @@ export class LoginisationComponent {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
 
-      this.http
-        .post<LoginResponse>('http://127.0.0.1:5000/login', loginData)
-        .subscribe({
-          next: (response) => {
-            this.authService.login(response.token);
-            alert('Login successful');
-          },
-          error: (err) => {
-            console.error('Error', err);
-            alert('Login failed');
-          },
-        });
+      this.http.post<LoginResponse>('http://127.0.0.1:5000/login', loginData).subscribe({
+        next: (response) => {
+          this.authService.login(response.token);
+          alert('Login successful');
+        },
+        error: (err) => {
+          console.error('Error', err);
+          alert('Login failed');
+        },
+      });
     }
   }
 }

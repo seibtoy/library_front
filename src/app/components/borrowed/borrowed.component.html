@@ -28,19 +28,14 @@
                   <p>
                     <strong>Total Price:</strong>
                     {{
-                    (
-                    book.bookId.rentalPrice * book.weeks +
-                    book.bookId.depositPrice
-                    ).toFixed(2)
+                      (book.bookId.rentalPrice * book.weeks + book.bookId.depositPrice).toFixed(2)
                     }}
                     USD
                   </p>
                 </div>
               </div>
               <div class="borrowed__btn">
-                <button (click)="togglePenalty(book, borrowedBook)">
-                  Stop rental period
-                </button>
+                <button (click)="togglePenalty(book, borrowedBook)">Stop rental period</button>
               </div>
             </div>
           }
@@ -64,6 +59,6 @@
         $event.refundAmount
       )
     "
-    >
+  >
   </app-penalty>
 </div>

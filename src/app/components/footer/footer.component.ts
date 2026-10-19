@@ -5,8 +5,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   imports: [],
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
 })
-export class FooterComponent {
-
-}
+export class FooterComponent {}

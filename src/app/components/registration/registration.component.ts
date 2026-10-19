@@ -17,18 +17,16 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule
-],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './registration.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
-  constructor(private http: HttpClient, private authservice: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authservice: AuthService,
+  ) {}
 
   formFields = [
     {
@@ -95,10 +93,7 @@ export class RegistrationComponent {
       }),
       phone: new FormControl<string>('', {
         nonNullable: true,
-        validators: [
-          Validators.required,
-          Validators.pattern(/^\+?[0-9]{10,15}$/),
-        ],
+        validators: [Validators.required, Validators.pattern(/^\+?[0-9]{10,15}$/)],
       }),
       password: new FormControl<string>('', {
         nonNullable: true,
@@ -109,7 +104,7 @@ export class RegistrationComponent {
         validators: [Validators.required, Validators.minLength(6)],
       }),
     },
-    { validators: this.passwordMatchValidator }
+    { validators: this.passwordMatchValidator },
   );
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {

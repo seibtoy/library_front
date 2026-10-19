@@ -24,19 +24,15 @@
                   {{ selectedBook.bookId.depositPrice.toFixed(2) }} USD
                 </p>
                 <p><strong>Weeks:</strong> {{ selectedBook.weeks }}</p>
-                <p>
-                  <strong>Rental Date:</strong> {{ selectedBook.rentalDate | date }}
-                </p>
-                <p>
-                  <strong>Return Date:</strong> {{ selectedBook.returnDate | date }}
-                </p>
+                <p><strong>Rental Date:</strong> {{ selectedBook.rentalDate | date }}</p>
+                <p><strong>Return Date:</strong> {{ selectedBook.returnDate | date }}</p>
                 <p>
                   <strong>Total Price:</strong>
                   {{
-                  (
-                  selectedBook.bookId.rentalPrice * selectedBook.weeks +
-                  selectedBook.bookId.depositPrice
-                  ).toFixed(2)
+                    (
+                      selectedBook.bookId.rentalPrice * selectedBook.weeks +
+                      selectedBook.bookId.depositPrice
+                    ).toFixed(2)
                   }}
                   USD
                 </p>
@@ -45,38 +41,23 @@
           </div>
           <div class="penalty__penalties">
             <div class="penalty__pen-checkbox">
-              <input
-                type="checkbox"
-                (change)="updateRefund('physicalDamage', $event)"
-                />
+              <input type="checkbox" (change)="updateRefund('physicalDamage', $event)" />
               <label>Physical damage</label>
             </div>
             <div class="penalty__pen-checkbox">
-              <input
-                type="checkbox"
-                (change)="updateRefund('pollution', $event)"
-                />
+              <input type="checkbox" (change)="updateRefund('pollution', $event)" />
               <label>Pollution</label>
             </div>
             <div class="penalty__pen-checkbox">
-              <input
-                type="checkbox"
-                (change)="updateRefund('waterDamage', $event)"
-                />
+              <input type="checkbox" (change)="updateRefund('waterDamage', $event)" />
               <label>Water damage</label>
             </div>
             <div class="penalty__pen-checkbox">
-              <input
-                type="checkbox"
-                (change)="updateRefund('insectsAnimals', $event)"
-                />
+              <input type="checkbox" (change)="updateRefund('insectsAnimals', $event)" />
               <label>Damage from insects and animals</label>
             </div>
             <div class="penalty__pen-checkbox">
-              <input
-                type="checkbox"
-                (change)="updateRefund('mechanicalDefects', $event)"
-                />
+              <input type="checkbox" (change)="updateRefund('mechanicalDefects', $event)" />
               <label>Mechanical defects</label>
             </div>
           </div>

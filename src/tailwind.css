@@ -1,0 +1,9 @@
+/*
+ * Tailwind is imported without preflight (its CSS reset) so the legacy SCSS and
+ * Angular Material screens keep their current look. Once they are rewritten,
+ * replace the imports below with a single `@import "tailwindcss";`.
+ */
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);

@@ -42,7 +42,7 @@ export class CartService {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .subscribe({
         next: (response) => {
@@ -64,7 +64,7 @@ export class CartService {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .subscribe({
         next: (response) => {},

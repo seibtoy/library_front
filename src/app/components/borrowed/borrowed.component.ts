@@ -17,7 +17,10 @@ export class BorrowedComponent implements OnInit {
   selectedBook: any;
   borrowedBook: any;
 
-  constructor(private cartService: CartService, private http: HttpClient) {}
+  constructor(
+    private cartService: CartService,
+    private http: HttpClient,
+  ) {}
 
   ngOnInit(): void {
     this.cartService.getUserBorrowedBooks().subscribe({
@@ -36,7 +39,7 @@ export class BorrowedComponent implements OnInit {
     userId: string,
     depositPrice: number,
     clientPaid: number,
-    refundAmount: number
+    refundAmount: number,
   ): void {
     const token = sessionStorage.getItem('token');
     this.http
@@ -55,17 +58,15 @@ export class BorrowedComponent implements OnInit {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .subscribe({
         next: (response: any) => {
-          const index = this.borrowedBooks.findIndex(
-            (book) => book._id === borrowedBookId
-          );
+          const index = this.borrowedBooks.findIndex((book) => book._id === borrowedBookId);
           if (index !== -1) {
-            this.borrowedBooks[index].books = this.borrowedBooks[
-              index
-            ].books.filter((book: any) => book.bookId._id !== bookId);
+            this.borrowedBooks[index].books = this.borrowedBooks[index].books.filter(
+              (book: any) => book.bookId._id !== bookId,
+            );
           }
           this.togglePenalty();
         },

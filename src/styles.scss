@@ -1,4 +1,4 @@
-@use "app/styles/global";
+@use 'app/styles/global';
 
 html,
 body {
@@ -7,7 +7,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 body .footer {
   margin-top: auto;

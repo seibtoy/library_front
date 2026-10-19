@@ -22,10 +22,7 @@
       </p>
       <p>
         Rental price:
-        <b
-          >{{ item.bookId.rentalPrice.toFixed(2) }}
-          {{ item.bookId.currency }}</b
-        >
+        <b>{{ item.bookId.rentalPrice.toFixed(2) }} {{ item.bookId.currency }}</b>
       </p>
     </div>
     <div class="cart__trash-icon" (click)="removeFromCart()">
@@ -39,12 +36,7 @@
             <button (click)="decrement()">
               <i class="fa-solid fa-minus"></i>
             </button>
-            <input
-              matInput
-              [(ngModel)]="item.weeks"
-              type="text"
-              [readonly]="true"
-            />
+            <input matInput [(ngModel)]="item.weeks" type="text" [readonly]="true" />
             <button (click)="increment()">
               <i class="fa-regular fa-plus"></i>
             </button>
@@ -55,10 +47,7 @@
       <div class="cart__total-price">
         <span
           >{{
-            (
-              item.bookId.depositPrice +
-              item.bookId.rentalPrice * item.weeks
-            ).toFixed(2)
+            (item.bookId.depositPrice + item.bookId.rentalPrice * item.weeks).toFixed(2)
           }}
           USD</span
         >
