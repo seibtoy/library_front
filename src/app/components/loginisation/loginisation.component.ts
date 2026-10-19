@@ -8,7 +8,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
+
 import { HttpClient } from '@angular/common/http';
 import { LoginResponse } from '../../models/loginResponse.model';
 import { AuthService } from '../../services/auth.service';
@@ -18,13 +18,12 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
   selector: 'app-loginisation',
   standalone: true,
   imports: [
-    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    ModalWindowComponent,
-  ],
+    ModalWindowComponent
+],
   templateUrl: './loginisation.component.html',
   styleUrl: './loginisation.component.scss',
 })
