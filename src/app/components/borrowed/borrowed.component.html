@@ -53,7 +53,7 @@
     (isPenaltyChange)="isPenalty = $event"
     [selectedBook]="selectedBook"
     [borrowedBook]="borrowedBook"
-    [userId]="borrowedBook?.userId"
+    [userId]="$safeNavigationMigration(borrowedBook?.userId)"
     (stopRentalEvent)="
       stopRental(
         $event.borrowedBookId,

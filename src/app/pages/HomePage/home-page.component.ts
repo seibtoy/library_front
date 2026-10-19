@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MainComponent } from '../../components/Main/main.component';
 
 @Component({
@@ -7,6 +7,7 @@ import { MainComponent } from '../../components/Main/main.component';
 
   imports: [MainComponent],
   templateUrl: './home-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {

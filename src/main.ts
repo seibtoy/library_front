@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,7 +10,7 @@ import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideZoneChangeDetection(),provideHttpClient(),
+    provideZoneChangeDetection(),provideHttpClient(withXhr()),
     provideAnimations(),
     provideRouter(routes, withComponentInputBinding()),
     importProvidersFrom(MatFormFieldModule, MatInputModule),

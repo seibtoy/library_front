@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,6 +29,7 @@ import { HttpClient } from '@angular/common/http';
 ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class CartComponent implements OnInit {

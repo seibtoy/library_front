@@ -4,12 +4,14 @@ import {
   Output,
   EventEmitter,
   AfterViewInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import MicroModal from 'micromodal';
 
 @Component({
   selector: 'app-modal-window',
   templateUrl: './modal-window.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./modal-window.component.scss'],
 })
 export class ModalWindowComponent implements AfterViewInit {

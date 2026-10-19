@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LoginisationComponent } from '../../components/loginisation/loginisation.component';
 
 @Component({
@@ -7,6 +7,7 @@ import { LoginisationComponent } from '../../components/loginisation/loginisatio
 
   imports: [LoginisationComponent],
   templateUrl: './log-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './log-page.component.scss',
 })
 export class LoginPageComponent {

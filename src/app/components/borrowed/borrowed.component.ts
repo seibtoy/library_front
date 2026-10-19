@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { PenaltyComponent } from '../penalty/penalty.component';
   selector: 'app-borrowed',
   imports: [CommonModule, PenaltyComponent],
   templateUrl: './borrowed.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './borrowed.component.scss',
 })
 export class BorrowedComponent implements OnInit {
