@@ -5,6 +5,7 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-penalty',
   imports: [CommonModule],
   templateUrl: './penalty.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './penalty.component.scss',
 })
 export class PenaltyComponent implements OnChanges {

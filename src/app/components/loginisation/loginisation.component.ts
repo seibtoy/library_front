@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -25,6 +25,7 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
     ModalWindowComponent
 ],
   templateUrl: './loginisation.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './loginisation.component.scss',
 })
 export class LoginisationComponent {

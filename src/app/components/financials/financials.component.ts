@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -7,6 +7,7 @@ Chart.register(...registerables);
   selector: 'app-financials',
   imports: [],
   templateUrl: './financials.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './financials.component.scss',
 })
 export class FinancialsComponent implements OnInit {

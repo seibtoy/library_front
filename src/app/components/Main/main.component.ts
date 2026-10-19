@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { BookService } from './../../services/book.service';
@@ -12,6 +12,7 @@ import { CartService } from '../../services/cart.service';
   standalone: true,
   imports: [MatButtonModule, CommonModule, ModalWindowComponent],
   templateUrl: './main.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './main.component.scss',
 })
 export class MainComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -24,6 +24,7 @@ import { AuthService } from '../../services/auth.service';
     ReactiveFormsModule
 ],
   templateUrl: './registration.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
